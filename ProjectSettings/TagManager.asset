@@ -50,3 +50,6 @@ TagManager:
   - name: Activity
     uniqueID: 3224958585
     locked: 0
+  - name: Canvas
+    uniqueID: 4073741353
+    locked: 0

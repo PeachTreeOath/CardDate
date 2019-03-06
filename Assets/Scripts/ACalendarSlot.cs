@@ -16,16 +16,18 @@ public class ACalendarSlot : MonoBehaviour
 
     [SerializeField] protected TextMeshPro dateText;
 
-    public void SetDayNumber(int day)
-    {
-        dateText.text = day.ToString();
-    }
-
     public void InitDate(int year, int month, int week, int day)
     {
         this.year = year;
         this.month = month;
         this.week = week;
         this.day = day;
+
+        SetDayNumber();
+    }
+
+    private void SetDayNumber()
+    {
+        dateText.text = day.ToString();
     }
 }

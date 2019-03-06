@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class CalendarController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private CalendarModel model;
+    private CalendarView view;
+
+    private void Awake()
     {
-        
+        model = GetComponent<CalendarModel>();
+        view = GetComponent<CalendarView>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        view.CreateInitialCalendar();
+    }
+
+    public void GotoNextWeek()
+    {
+        model.IncrementWeek();
+        view.GotoNextWeek();
     }
 }

@@ -6,13 +6,13 @@ public class ScrollingBg : MonoBehaviour
 {
 
     public float scrollSpeed;
+    public int numTiles;
     public Color tileColor;
 
     private List<GameObject> bgs = new List<GameObject>();
     private float tileSize;
-    private int numTiles = 4;
     private float shiftDistance;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -28,6 +28,7 @@ public class ScrollingBg : MonoBehaviour
             {
                 float currYPos = startingYPos + tileSize * j;
                 GameObject newBG = Instantiate(ResourceLoader.instance.scrollBGPrefab);
+                newBG.transform.SetParent(transform);
                 newBG.transform.position = new Vector2(currXPos, currYPos);
                 newBG.GetComponent<SpriteRenderer>().color = tileColor;
                 bgs.Add(newBG);
@@ -36,7 +37,7 @@ public class ScrollingBg : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         float delta = Time.deltaTime * scrollSpeed;
         Vector2 deltaVector = new Vector2(delta, -delta);

@@ -15,7 +15,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources()
     {
-        //scrollBGPrefab = Resources.Load<GameObject>("Prefabs/ScrollBG");
+        scrollBGPrefab = Resources.Load<GameObject>("Prefabs/ScrollBG");
         calendarDaySlotPrefab = Resources.Load<GameObject>("Prefabs/CalendarDaySlot");
     }
 }

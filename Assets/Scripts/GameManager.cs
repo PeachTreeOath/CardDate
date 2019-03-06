@@ -9,6 +9,11 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private CalendarController calendar;
 
+    private void Start()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +27,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         //TODO temp
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             EndWeek();
         }
@@ -45,9 +50,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-  
+    // Move calendar up 1 week
     private void EndWeek()
     {
-        // Move calendar up 1 week
+        calendar.GotoNextWeek();
     }
 }
