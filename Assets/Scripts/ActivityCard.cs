@@ -11,12 +11,6 @@ public class ActivityCard : MonoBehaviour
     private Rigidbody2D rBody;
     private SpriteRenderer spr;
 
-    public void Init(int newLevel)
-    {
-        rBody = GetComponent<Rigidbody2D>();
-        spr = GetComponent<SpriteRenderer>();
-    }
-
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();

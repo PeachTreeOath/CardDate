@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ResourceLoader : Singleton<ResourceLoader>
 {
-
-    [HideInInspector] public GameObject scrollBGFab;
+    [HideInInspector] public GameObject scrollBGPrefab;
+    [HideInInspector] public GameObject calendarDaySlotPrefab;
 
     protected override void Awake()
     {
@@ -15,6 +15,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 
     private void LoadResources()
     {
-        //scrollBGFab = Resources.Load<GameObject>("Prefabs/ScrollBG");
+        //scrollBGPrefab = Resources.Load<GameObject>("Prefabs/ScrollBG");
+        calendarDaySlotPrefab = Resources.Load<GameObject>("Prefabs/CalendarDaySlot");
     }
 }

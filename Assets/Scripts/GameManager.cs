@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
 
+    [SerializeField] private CalendarController calendar;
+
     // Update is called once per frame
     void Update()
     {
@@ -18,35 +20,15 @@ public class GameManager : Singleton<GameManager>
         {
             CastRay(false);
         }
-    }
 
-    private void GenerateItem()
-    {
-        /*
-        if (!AreSquaresFull())
+        //TODO temp
+        if(Input.GetKey(KeyCode.Space))
         {
-            GameObject obj = Instantiate(ResourceLoader.instance.item);
-            Item item = obj.GetComponent<Item>();
-            item.Init(0);
-
-            Square emptySquare = null;
-            while (!emptySquare)
-            {
-                int rand = UnityEngine.Random.Range(0, 8);
-                if (!squares[rand].isOccupied)
-                {
-                    emptySquare = squares[rand];
-                    item.square = emptySquare;
-                }
-            }
-
-            emptySquare.isOccupied = true;
-            item.transform.position = emptySquare.faceLocation;
+            EndWeek();
         }
-        */
     }
 
-    void CastRay(bool isMouseDown)
+    private void CastRay(bool isMouseDown)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
@@ -61,5 +43,11 @@ public class GameManager : Singleton<GameManager>
                     handler.EndDrag();
             }
         }
+    }
+
+  
+    private void EndWeek()
+    {
+        // Move calendar up 1 week
     }
 }

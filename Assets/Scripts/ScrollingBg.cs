@@ -16,7 +16,7 @@ public class ScrollingBg : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        tileSize = ResourceLoader.instance.scrollBGFab.GetComponent<SpriteRenderer>().size.x;
+        tileSize = ResourceLoader.instance.scrollBGPrefab.GetComponent<SpriteRenderer>().size.x;
         shiftDistance = tileSize * numTiles;
         float startingXPos = -numTiles * tileSize / 2 + tileSize / 2;
         float startingYPos = -numTiles * tileSize / 2 + tileSize / 2;
@@ -27,7 +27,7 @@ public class ScrollingBg : MonoBehaviour
             for (int j = 0; j < numTiles; j++)
             {
                 float currYPos = startingYPos + tileSize * j;
-                GameObject newBG = Instantiate(ResourceLoader.instance.scrollBGFab);
+                GameObject newBG = Instantiate(ResourceLoader.instance.scrollBGPrefab);
                 newBG.transform.position = new Vector2(currXPos, currYPos);
                 newBG.GetComponent<SpriteRenderer>().color = tileColor;
                 bgs.Add(newBG);
