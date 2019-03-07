@@ -7,21 +7,8 @@ using UnityEngine.EventSystems;
 
 public class CalendarWeekdaySlot : ACalendarSlot
 {
-    private SpriteRenderer[] sprites;
-    private TextMeshPro[] texts;
-
-    private void Awake()
+    public void AcceptCard(CardModel card)
     {
-        sprites = GetComponentsInChildren<SpriteRenderer>();
-        texts = GetComponentsInChildren<TextMeshPro>();
-    }
-
-    public void SetAlpha(float alpha)
-    {
-        foreach (SpriteRenderer sprite in sprites)
-            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
-
-        foreach (TextMeshPro text in texts)
-            text.alpha = alpha;
+        CalendarController.instance.PlaceCard(card, year, month, day);
     }
 }

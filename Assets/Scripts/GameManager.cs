@@ -7,13 +7,6 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
 
-    [SerializeField] private CalendarController calendar;
-
-    private void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -39,7 +32,7 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         if (hit)
         {
-            ActivityCard handler = hit.collider.GetComponent<ActivityCard>();
+            CardView handler = hit.collider.GetComponent<CardView>();
             if (handler)
             {
                 if (isMouseDown)
@@ -53,6 +46,6 @@ public class GameManager : Singleton<GameManager>
     // Move calendar up 1 week
     private void EndWeek()
     {
-        calendar.GotoNextWeek();
+        CalendarController.instance.GotoNextWeek();
     }
 }

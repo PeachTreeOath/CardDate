@@ -4,17 +4,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ActivityCard : MonoBehaviour
+public class CardView : MonoBehaviour
 {
-    private CalendarWeekdaySlot overlappedSlot;
+    [SerializeField] private SpriteRenderer cardBack;
+    [SerializeField] private SpriteRenderer cardFace;
+
+    private CardModel model;
+    private CalendarWeekdaySlot overlappedSlot; // Slot the card is currently hovering over
     private bool isDragging;
     private Rigidbody2D rBody;
-    private SpriteRenderer spr;
+
+    void Awake()
+    {
+        model = GetComponent<CardModel>();
+        rBody = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
-        spr = GetComponent<SpriteRenderer>();
+        ChangeColorToType();
+    }
+
+    private void ChangeColorToType()
+    {
+        Color newColor = Color.white;
+
+        switch (model.type)
+        {
+            case CardType.CHARM:
+                newColor = Color.magenta;
+                break;
+            case CardType.FASHION:
+                newColor = Color.red;
+                break;
+            case CardType.MONEY:
+                newColor = Color.yellow;
+                break;
+            case CardType.SPORTS:
+                newColor = Color.green;
+                break;
+            case CardType.STUDY:
+                newColor = Color.blue;
+                break;
+        }
+
+        cardBack.color = newColor;
     }
 
     public void Update()
@@ -66,7 +100,9 @@ public class ActivityCard : MonoBehaviour
 
     private void SetCardInSlot()
     {
-      // free up hand
-      // place into slot
+        overlappedSlot.AcceptCard(model);
+        transform.position = overlappedSlot.transform.position;
+        //TODO: fix positions
+        // free up hand
     }
 }

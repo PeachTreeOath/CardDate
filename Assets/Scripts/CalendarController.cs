@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CalendarController : MonoBehaviour
+public class CalendarController : Singleton<CalendarController>
 {
     private CalendarModel model;
     private CalendarView view;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         model = GetComponent<CalendarModel>();
         view = GetComponent<CalendarView>();
     }
@@ -22,5 +24,15 @@ public class CalendarController : MonoBehaviour
     {
         model.IncrementWeek();
         view.GotoNextWeek();
+    }
+
+    public void PlaceCard(CardModel cardModel, int year, int month, int day)
+    {
+        model.AddCard(cardModel, year, month, day);
+    }
+
+    public void CalculateWeekResults()
+    {
+
     }
 }

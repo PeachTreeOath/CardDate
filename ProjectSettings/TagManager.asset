@@ -47,7 +47,7 @@ TagManager:
   - name: CalendarSlot
     uniqueID: 957546941
     locked: 0
-  - name: Activity
+  - name: Card
     uniqueID: 3224958585
     locked: 0
   - name: Canvas

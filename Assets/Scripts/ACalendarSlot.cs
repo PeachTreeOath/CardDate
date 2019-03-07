@@ -5,16 +5,25 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class ACalendarSlot : MonoBehaviour
+public abstract class ACalendarSlot : MonoBehaviour
 {
     public int year;
     public int month;
     public int week;
-    public int day;
+    public int day; // Date of slot 1-28
 
     public bool isOccupied;
 
     [SerializeField] protected TextMeshPro dateText;
+
+    private SpriteRenderer[] sprites;
+    private TextMeshPro[] texts;
+
+    private void Awake()
+    {
+        sprites = GetComponentsInChildren<SpriteRenderer>();
+        texts = GetComponentsInChildren<TextMeshPro>();
+    }
 
     public void InitDate(int year, int month, int week, int day)
     {
@@ -23,10 +32,20 @@ public class ACalendarSlot : MonoBehaviour
         this.week = week;
         this.day = day;
 
-        SetDayNumber();
+        SetDateText();
     }
 
-    private void SetDayNumber()
+    public void SetAlpha(float alpha)
+    {
+        foreach (SpriteRenderer sprite in sprites)
+            sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, alpha);
+
+        foreach (TextMeshPro text in texts)
+            text.alpha = alpha;
+    }
+
+
+    private void SetDateText()
     {
         dateText.text = day.ToString();
     }
