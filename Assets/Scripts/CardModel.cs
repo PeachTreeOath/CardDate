@@ -21,7 +21,7 @@ public class CardModel : MonoBehaviour
             case CardType.SPORTS:
                 return "Stretch Class";
             case CardType.STUDY:
-                return "Leisure Code";
+                return "Code Course";
             default:
                 return "null";
         }

@@ -63,7 +63,6 @@ public class CalendarView : MonoBehaviour
 
         while (lerpValue < 1)
         {
-            Debug.Log(lerpValue);
             lerpValue += weekViewSlotLerpSpeed * Time.deltaTime;
 
             int i = 0;

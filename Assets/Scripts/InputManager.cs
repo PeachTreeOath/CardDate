@@ -10,12 +10,14 @@ public class InputManager : Singleton<InputManager>
     private CalendarWeekdaySlot currentHoveredSlot;
     private CardView currentSelectedCard;
     private LineRenderer lineRenderer;
+    [HideInInspector] public Transform handTransform;
 
     protected override void Awake()
     {
         base.Awake();
 
         lineRenderer = GetComponent<LineRenderer>();
+        handTransform = GameObject.Find("Hand").transform;
     }
 
     // Update is called once per frame
@@ -116,6 +118,7 @@ public class InputManager : Singleton<InputManager>
                 if (currentSelectedCard)
                 {
                     currentSelectedCard.SetCardInSlot(currentHoveredSlot);
+                    currentSelectedCard.EndHover();
                     currentSelectedCard = null;
                 }
 

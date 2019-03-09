@@ -7,6 +7,12 @@ public class ResourceLoader : Singleton<ResourceLoader>
     [HideInInspector] public GameObject scrollBGPrefab;
     [HideInInspector] public GameObject calendarDaySlotPrefab;
 
+    public RuntimeAnimatorController moneyController;
+    public RuntimeAnimatorController charmController;
+    public RuntimeAnimatorController fashionController;
+    public RuntimeAnimatorController sportsController;
+    public RuntimeAnimatorController studyController;
+
     protected override void Awake()
     {
         base.Awake();
