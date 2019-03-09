@@ -9,10 +9,22 @@ public class CardView : MonoBehaviour
     [SerializeField] private SpriteRenderer cardBack;
     [SerializeField] private SpriteRenderer cardFace;
 
-    private CardModel model;
-    private CalendarWeekdaySlot overlappedSlot; // Slot the card is currently hovering over
-    private bool isDragging;
+    private Vector3 normalHandSize = new Vector3(0.6f, 0.6f, 1);
+    private Vector3 hoveredHandSize = new Vector3(0.75f, 0.75f, 1);
+    private Vector3 normalPlacedSize = new Vector3(0.35f, 0.35f, 1);
+    private Vector3 hoveredPlacedSize = new Vector3(0.55f, 0.55f, 1);
+    private Vector3 placedCardOffset = new Vector3(.3f, 0, 0);
+
+    [HideInInspector] public bool inHand = true;
+    [HideInInspector] public CardModel model;
     private Rigidbody2D rBody;
+    private Vector3 originalHandPosition; // TODO: Switch this to dynamic hand
+    //TODO change this to hover with mouse
+    private CalendarWeekdaySlot overlappedSlot; // Slot the card is currently hovering over
+
+
+    private bool isHovered;
+    private bool isSelected;
 
     void Awake()
     {
@@ -23,6 +35,7 @@ public class CardView : MonoBehaviour
     void Start()
     {
         ChangeColorToType();
+        originalHandPosition = transform.position;
     }
 
     private void ChangeColorToType()
@@ -53,31 +66,49 @@ public class CardView : MonoBehaviour
 
     public void Update()
     {
-        if (isDragging)
+        if (isSelected)
         {
-            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector2(point.x, point.y);
+            //Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //transform.position = new Vector2(point.x, point.y);
         }
     }
 
-    public void StartDrag()
+    public void StartHover()
     {
-        isDragging = true;
-    }
+        if (isHovered) return;
 
-    public void EndDrag()
-    {
-        isDragging = false;
-
-        if (overlappedSlot)
-        {
-            SetCardInSlot();
-        }
+        isHovered = true;
+        if (inHand)
+            transform.localScale = hoveredHandSize;
         else
-        {
-            // reset into hand
-            //transform.position = square.faceLocation;
-        }
+            transform.localScale = hoveredPlacedSize;
+
+        //TODO change sorting layer
+    }
+
+    public void EndHover()
+    {
+        if (!isHovered) return;
+
+        isHovered = false;
+        if (inHand)
+            transform.localScale = normalHandSize;
+        else
+            transform.localScale = normalPlacedSize;
+
+        //TODO change sorting layer
+        //TODO check to see if card shrinks even when selected
+    }
+
+    /*
+    public void StartSelection()
+    {
+        isSelected = true;
+    }
+
+    public void EndSelection()
+    {
+        isSelected = false;
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -97,12 +128,21 @@ public class CardView : MonoBehaviour
             overlappedSlot = null;
         }
     }
+    */
 
-    private void SetCardInSlot()
+    public void SetCardInSlot(CalendarWeekdaySlot slot)
     {
-        overlappedSlot.AcceptCard(model);
-        transform.position = overlappedSlot.transform.position;
-        //TODO: fix positions
-        // free up hand
+        inHand = false;
+        slot.AcceptCard(model);
+        Vector3 newPosition = slot.transform.position + placedCardOffset;
+        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z); // Preserve z value
+        transform.localScale = hoveredPlacedSize;
+    }
+
+    public void ReturnToHand()
+    {
+        inHand = true;
+        transform.position = originalHandPosition;
+        transform.localScale = normalHandSize;
     }
 }

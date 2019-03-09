@@ -9,6 +9,19 @@ public class CalendarWeekdaySlot : ACalendarSlot
 {
     public void AcceptCard(CardModel card)
     {
-        CalendarController.instance.PlaceCard(card, year, month, day);
+        if (!isOccupied)
+        {
+            CalendarController.instance.PlaceCard(card, year, month, day);
+            isOccupied = true;
+        }
+    }
+
+    public void RemoveCard()
+    {
+        if (isOccupied)
+        {
+            // Remove card from map
+            isOccupied = false;
+        }
     }
 }

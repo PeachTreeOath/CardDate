@@ -53,3 +53,6 @@ TagManager:
   - name: Canvas
     uniqueID: 4073741353
     locked: 0
+  - name: SelectionLine
+    uniqueID: 1493827049
+    locked: 0
