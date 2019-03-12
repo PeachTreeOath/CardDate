@@ -121,9 +121,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7456404}
-  - component: {fileID: 7456405}
-  - component: {fileID: 7456406}
   - component: {fileID: 7456407}
+  - component: {fileID: 7456406}
   m_Layer: 0
   m_Name: Calendar
   m_TagString: Untagged
@@ -147,23 +146,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7456405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7456403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b0617bf3872f744a56a9501d55165d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentYear: 1
-  currentMonth: 1
-  currentWeek: 1
 --- !u!114 &7456406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,14 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b211ce25f7428e4f8d7a60f8620a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doNotDestroy: 0
   model:
     currentYear: 1
     currentMonth: 1
     currentWeek: 1
-  view: {fileID: 0}
 --- !u!1 &17132905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1417,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 630272148}
+  - component: {fileID: 630272149}
+  - component: {fileID: 630272150}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -1465,6 +1445,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630272149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630272147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c840cf2340fec4a971746c72ce4dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model:
+    cards: []
+--- !u!114 &630272150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630272147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad31b73d77116be4b948be789c736790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &638453706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,6 +2765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1146629533}
   - component: {fileID: 1146629532}
+  - component: {fileID: 1146629534}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -2775,9 +2782,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146629531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7edf59f404d1eab4a8a019aa38cb52ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 3da2e08e6bbd04644bc1e068f165bb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model:
+    library: []
+    discard: []
 --- !u!4 &1146629533
 Transform:
   m_ObjectHideFlags: 0
@@ -2794,6 +2804,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146629534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146629531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4aed33881628d4db0a2fbb8361313e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deckPileCount: {fileID: 1959623734}
+  discardPileCount: {fileID: 933120866}
 --- !u!4 &1344456950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7630822930135280990, guid: 4ebb85755be8ba8419cf2e18d438f3e9,

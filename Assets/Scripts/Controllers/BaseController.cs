@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BaseController<M,V>
+public class BaseController<M,V> : MonoBehaviour
     where M : BaseModel
     where V : BaseView<M>, new()
 {
@@ -13,7 +13,7 @@ public class BaseController<M,V>
 
     public virtual void Awake()
     {
-        view = new V();
+        view = GetComponent<V>();
         view.Setup(model);
     }
 }

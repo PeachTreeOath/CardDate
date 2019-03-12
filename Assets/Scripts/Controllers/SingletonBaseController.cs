@@ -21,7 +21,7 @@ public class SingletonBaseController<T, M, V> : BaseController<M, V>
         }
         else
         {
-            UnityEngine.Object.Destroy(view.gameObject);
+            Destroy(gameObject);
         }
     }
 }

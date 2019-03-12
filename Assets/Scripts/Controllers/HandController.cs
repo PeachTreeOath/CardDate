@@ -7,11 +7,11 @@ public class HandController : SingletonBaseController<HandController, HandModel,
 
     public void AddToHand(CardModel card)
     {
-        model.AddToHand(card);
+        model.cards.Add(card);
     }
 
     public int GeCardCount()
     {
-        return model.GetCardCount();
+        return model.cards.Count;
     }
 }
