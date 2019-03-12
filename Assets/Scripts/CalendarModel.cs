@@ -6,7 +6,8 @@ using UnityEngine;
 /// <summary>
 /// Currently the game is 4 years, 4 seasons/months per year, and 4 weeks per season.
 /// </summary>
-public class CalendarModel : MonoBehaviour
+[Serializable]
+public class CalendarModel
 {
 
     public int currentYear = 1;

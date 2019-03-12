@@ -4,9 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardModel : MonoBehaviour
+[Serializable]
+public class CardModel
 {
+    public CardPrototype prototype;
+    public string cardName;
     public CardType type;
+    public int energyCost;
+    public int numCardsToDraw;
+
+    public CardModel(CardPrototype prototype)
+    {
+        this.prototype = prototype;
+        this.cardName = prototype.cardName;
+        this.type = prototype.type;
+        this.energyCost = prototype.energyCost;
+        this.numCardsToDraw = prototype.numCardsToDraw;
+    }
 
     public string GetCardName()
     {
