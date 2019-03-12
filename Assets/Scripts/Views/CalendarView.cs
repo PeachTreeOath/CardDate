@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CalendarView : MonoBehaviour
+public class CalendarView : BaseView<CalendarModel>
 {
-    private CalendarModel model;
     private Queue<GameObject> weekViewSlots = new Queue<GameObject>();
     private List<Vector3> weekViewSlotPositions = new List<Vector3>();
     private float weekViewSlotLerpSpeed = 1f;
@@ -13,11 +12,6 @@ public class CalendarView : MonoBehaviour
     private float weekViewSlotYDistance = -1.895f;
     private float dayViewSlotXStartPos = -7.26f;
     private float dayViewSlotXDistance = 2.42f;
-
-    void Awake()
-    {
-        model = GetComponent<CalendarModel>();
-    }
 
     private void Start()
     {

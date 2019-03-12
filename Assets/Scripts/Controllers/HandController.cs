@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
+public class HandController : SingletonBaseController<HandController, HandModel, HandView>
 {
-    private HandModel model;
-
-    void Awake()
-    {
-        model = GetComponent<HandModel>();
-    }
 
     public void AddToHand(CardModel card)
     {

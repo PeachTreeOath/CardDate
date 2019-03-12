@@ -4,27 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[Serializable]
-public class CardModel
+public class CardController : BaseController<CardModel, CardView>
 {
-    public CardPrototype prototype;
-    public string cardName;
-    public CardType type;
-    public int energyCost;
-    public int numCardsToDraw;
-
-    public CardModel(CardPrototype prototype)
-    {
-        this.prototype = prototype;
-        this.cardName = prototype.cardName;
-        this.type = prototype.type;
-        this.energyCost = prototype.energyCost;
-        this.numCardsToDraw = prototype.numCardsToDraw;
-    }
 
     public string GetCardName()
     {
-        switch (type)
+        switch (model.type)
         {
             case CardType.MONEY:
                 return "Work";
@@ -43,7 +28,7 @@ public class CardModel
 
     public string GetCardDescription()
     {
-        switch(type)
+        switch (model.type)
         {
             case CardType.MONEY:
                 return "Gain 1 Money";

@@ -2,18 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CalendarController : Singleton<CalendarController>
+public class CalendarController : SingletonBaseController<CalendarController, CalendarModel, CalendarView>
 {
-    private CalendarModel model;
-    private CalendarView view;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        model = GetComponent<CalendarModel>();
-        view = GetComponent<CalendarView>();
-    }
 
     void Start()
     {

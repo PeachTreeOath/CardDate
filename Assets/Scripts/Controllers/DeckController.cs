@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckModel : MonoBehaviour
+public class DeckController : SingletonBaseController<DeckController, DeckModel, DeckView>
 {
-    public List<CardModel> library = new List<CardModel>();
-    public List<CardModel> discard = new List<CardModel>();
-
     public void PutOnTop(CardModel card)
     {
-        library.Add(card);
+        model.library.Add(card);
     }
 
     public CardModel Draw()
     {
         CardModel card = null;
 
-        if (library.Count == 0)
+        if (model.library.Count == 0)
         {
             Shuffle();
             //TODO notify the system there's been a shuffle!
         }
 
-        if (library.Count > 0)
+        if (model.library.Count > 0)
         {
-            var index = library.Count - 1;
-            card = library[index];
-            library.RemoveAt(index);
+            var index = model.library.Count - 1;
+            card = model.library[index];
+            model.library.RemoveAt(index);
         }
 
         return card;
@@ -36,27 +33,29 @@ public class DeckModel : MonoBehaviour
     {
         if (addDiscard)
         {
-            library.AddRange(discard);
-            if (discard.Count > 0)
+            model.library.AddRange(model.discard);
+            if (model.discard.Count > 0)
             {
+                /*
                 //This will technically make the cards move to the deck at the same time a
                 //Card comes into the hand when the deck is empty, but it moves so fast it looks fine
                 Card card = transform.Find("Slot").GetComponent<ObjectSlot>().objectInSlot.GetComponent<Card>();
                 transform.Find("Slot").GetComponent<ObjectSlot>().Release();
                 card.MoveToDeck();
                 transform.GetComponent<Deck>().Clear();
+                */
             }
-            discard.Clear();
+            model.discard.Clear();
         }
 
-        int count = library.Count;
+        int count = model.library.Count;
         int last = count - 1;
         for (int i = 0; i < last; i++)
         {
             int randomIndex = Random.Range(i, count);
-            CardModel temp = library[i];
-            library[i] = library[randomIndex];
-            library[randomIndex] = temp;
+            CardModel temp = model.library[i];
+            model.library[i] = model.library[randomIndex];
+            model.library[randomIndex] = temp;
         }
     }
 }

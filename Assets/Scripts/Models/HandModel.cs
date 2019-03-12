@@ -1,16 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandModel : MonoBehaviour
+[Serializable]
+public class HandModel : BaseModel
 {
     private List<CardModel> cards = new List<CardModel>();
-
-    private void Awake()
-    {
-        view = GetComponent<HandView>();
-    }
-
+  
     public int GetCardCount()
     {
         return cards.Count;

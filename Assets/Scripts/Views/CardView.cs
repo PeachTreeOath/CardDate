@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardView : MonoBehaviour
+public class CardView : BaseView<CardModel>
 {
     [SerializeField] private SpriteRenderer cardBack;
     [SerializeField] private SpriteRenderer cardFace;
@@ -19,7 +19,6 @@ public class CardView : MonoBehaviour
     private Vector3 placedOffset = new Vector3(.3f, 0, 0);
 
     [HideInInspector] public bool inHand = true;
-    [HideInInspector] public CardModel model;
     private Rigidbody2D rBody;
     private Vector3 originalHandPosition; // TODO: Switch this to dynamic hand
     private Vector3 hoveredPosition;
@@ -32,7 +31,6 @@ public class CardView : MonoBehaviour
 
     void Awake()
     {
-        model = GetComponent<CardModel>();
         rBody = GetComponent<Rigidbody2D>();
     }
 
