@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 
 [RequireComponent(typeof(DeckController))]
-public class InitialDeckConfig : MonoBehaviour {
+public class InitialDeckConfig : MonoBehaviour
+{
 
-    public List<CardPrototype> cardsToStart;
+    public List<CardPrototype> startingCards;
 
-    void Start() {
-        DeckModel deckModel = GetComponent<DeckModel>();
-        if(cardsToStart == null) {
-            cardsToStart = new List<CardPrototype>();
+    void Start()
+    {
+        if (startingCards == null)
+        {
+            startingCards = new List<CardPrototype>();
         }
 
-        for(var i = cardsToStart.Count - 1; i >= 0; i--) {
-            var card = cardsToStart[i];
-            //deckModel.PutOnTop( card.Instantiate() );
+        for (var i = 0; i < startingCards.Count; i++)
+        {
+            CardPrototype card = startingCards[i];
+            DeckController.instance.PutOnTop(card.Instantiate());
         }
+
+        DeckController.instance.Shuffle();
     }
 }

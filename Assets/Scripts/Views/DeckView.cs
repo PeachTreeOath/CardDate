@@ -8,13 +8,13 @@ public class DeckView : BaseView<DeckModel>
     [SerializeField] private TextMeshPro deckPileCount;
     [SerializeField] private TextMeshPro discardPileCount;
 
-    public void UpdateDeckPileCount(int count)
+    public void UpdateDeckPileCount()
     {
-        deckPileCount.text = count.ToString();
+        deckPileCount.text = model.library.Count.ToString();
     }
 
-    public void UpdateDiscardPileCount(int count)
+    public void UpdateDiscardPileCount()
     {
-        discardPileCount.text = count.ToString();
+        discardPileCount.text = model.discard.Count.ToString();
     }
 }

@@ -5,13 +5,20 @@ using UnityEngine;
 public class HandController : SingletonBaseController<HandController, HandModel, HandView>
 {
 
-    public void AddToHand(CardModel card)
+    private void Update()
     {
-        model.cards.Add(card);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DrawFromDeck();
+        }
     }
 
-    public int GeCardCount()
+    public void DrawFromDeck()
     {
-        return model.cards.Count;
+        CardModel newCard = DeckController.instance.Draw();
+        model.cards.Add(newCard);
+
+        view.SpawnCard(newCard);
+        view.ArrangeCards();
     }
 }

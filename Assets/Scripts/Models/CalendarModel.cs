@@ -32,12 +32,17 @@ public class CalendarModel : BaseModel
             currentYear++;
         }
 
-        // Check for gameover at year 4 end
+        // TODO: Check for gameover at year 4 end
     }
 
     public void AddCard(CardModel cardModel, int year, int month, int day)
     {
         activityMap.Add(CalculateTotalDay(year, month, day), cardModel);
+    }
+
+    public void RemoveCard(int year, int month, int day)
+    {
+        activityMap.Remove(CalculateTotalDay(year, month, day));
     }
 
     private int CalculateTotalDay(int year, int month, int day)

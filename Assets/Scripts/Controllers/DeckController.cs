@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DeckController : SingletonBaseController<DeckController, DeckModel, DeckView>
 {
+
     public void PutOnTop(CardModel card)
     {
         model.library.Add(card);
+        view.UpdateDeckPileCount();
     }
 
     public CardModel Draw()
@@ -26,6 +28,8 @@ public class DeckController : SingletonBaseController<DeckController, DeckModel,
             model.library.RemoveAt(index);
         }
 
+        view.UpdateDeckPileCount();
+
         return card;
     }
 
@@ -36,6 +40,8 @@ public class DeckController : SingletonBaseController<DeckController, DeckModel,
             model.library.AddRange(model.discard);
             if (model.discard.Count > 0)
             {
+                view.UpdateDeckPileCount();
+
                 /*
                 //This will technically make the cards move to the deck at the same time a
                 //Card comes into the hand when the deck is empty, but it moves so fast it looks fine
@@ -46,6 +52,7 @@ public class DeckController : SingletonBaseController<DeckController, DeckModel,
                 */
             }
             model.discard.Clear();
+            view.UpdateDiscardPileCount();
         }
 
         int count = model.library.Count;

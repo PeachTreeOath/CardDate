@@ -34,6 +34,10 @@ public class InputManager : Singleton<InputManager>
         {
             HandleMouseClick(false);
         }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            ResetSelection();
+        }
 
         //TODO temp
         if (Input.GetKeyDown(KeyCode.Space))
@@ -119,19 +123,22 @@ public class InputManager : Singleton<InputManager>
                 {
                     currentSelectedCard.SetCardInSlot(currentHoveredSlot);
                     currentSelectedCard.EndHover();
-                    currentSelectedCard = null;
                 }
 
-                lineRenderer.enabled = false;
+                ResetSelection();
             }
             // Case when player clicks in empty area
             else
             {
-                //currentSelectedCard.EndSelection();
-                currentSelectedCard = null;
-                lineRenderer.enabled = false;
+                ResetSelection();
             }
         }
+    }
+
+    private void ResetSelection()
+    {
+        currentSelectedCard = null;
+        lineRenderer.enabled = false;
     }
 
     // Move calendar up 1 week

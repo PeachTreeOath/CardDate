@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +10,9 @@ public class CardView : BaseView<CardModel>
     [SerializeField] private SpriteRenderer cardBack;
     [SerializeField] private SpriteRenderer cardFace;
     [SerializeField] private Canvas canvas;
+    [SerializeField] private TextMeshProUGUI nameField;
     [SerializeField] private SpriteRenderer image;
+    [SerializeField] private Animator animator;
 
     private Vector3 normalHandSize = new Vector3(0.6f, 0.6f, 1);
     private Vector3 hoveredHandSize = new Vector3(0.75f, 0.75f, 1);
@@ -18,13 +21,12 @@ public class CardView : BaseView<CardModel>
     private Vector3 hoveredOffset = new Vector3(0, 1, 0);
     private Vector3 placedOffset = new Vector3(.3f, 0, 0);
 
-    [HideInInspector] public bool inHand = true;
+    private CalendarWeekdaySlot currentSlot;
+
+    [HideInInspector] public bool inHand = true; // TODO: maybe move this to hand logic?
     private Rigidbody2D rBody;
     private Vector3 originalHandPosition; // TODO: Switch this to dynamic hand
     private Vector3 hoveredPosition;
-    //TODO change this to hover with mouse
-    private CalendarWeekdaySlot overlappedSlot; // Slot the card is currently hovering over
-
 
     private bool isHovered;
     private bool isSelected;
@@ -34,46 +36,19 @@ public class CardView : BaseView<CardModel>
         rBody = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
+    public void InitCard(CardModel cardModel)
     {
-        ChangeColorToType();
+        model = cardModel;
+
+        ChangeColorToType(model.type);
+        nameField.text = model.cardName;
+        animator.runtimeAnimatorController = model.animation;
+    }
+
+    public void SetHomePosition()
+    {
         originalHandPosition = transform.position;
         hoveredPosition = originalHandPosition + hoveredOffset;
-    }
-
-    private void ChangeColorToType()
-    {
-        Color newColor = Color.white;
-
-        switch (model.type)
-        {
-            case CardType.CHARM:
-                newColor = new Color(255f / 255f, 130f / 255f, 189f / 255f);
-                break;
-            case CardType.FASHION:
-                newColor = new Color(190f / 255f, 70f / 255f, 230f / 255f);
-                break;
-            case CardType.MONEY:
-                newColor = new Color(255f / 255f, 255f / 255f, 113f / 255f);
-                break;
-            case CardType.SPORTS:
-                newColor = new Color(170f / 255f, 255f / 255f, 75f / 255f);
-                break;
-            case CardType.STUDY:
-                newColor = new Color(103f / 255f, 199f / 255f, 254f / 255f);
-                break;
-        }
-
-        cardBack.color = newColor;
-    }
-
-    public void Update()
-    {
-        if (isSelected)
-        {
-            //Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //transform.position = new Vector2(point.x, point.y);
-        }
     }
 
     public void StartHover()
@@ -112,6 +87,59 @@ public class CardView : BaseView<CardModel>
         ChangeSortingLayer(false);
     }
 
+    public void SetCardInSlot(CalendarWeekdaySlot slot)
+    {
+        if (slot.isOccupied)
+            return;
+
+        inHand = false;
+        isHovered = true; // Done to make sure hover state is reset correctly after placement
+        slot.AcceptCard(model);
+        currentSlot = slot;
+        transform.SetParent(slot.transform);
+        Vector3 newPosition = slot.transform.position + placedOffset;
+        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z); // Preserve z value
+        transform.localScale = hoveredPlacedSize;
+    }
+
+    public void ReturnToHand()
+    {
+        currentSlot.RemoveCard();
+
+        inHand = true;
+        currentSlot = null;
+        transform.SetParent(InputManager.instance.handTransform);
+        transform.position = originalHandPosition;
+        transform.localScale = normalHandSize;
+        // TODO: Place back into hand and rearrange
+    }
+
+    private void ChangeColorToType(CardType cardType)
+    {
+        Color newColor = Color.white;
+
+        switch (cardType)
+        {
+            case CardType.CHARM:
+                newColor = new Color(255f / 255f, 130f / 255f, 189f / 255f);
+                break;
+            case CardType.FASHION:
+                newColor = new Color(190f / 255f, 70f / 255f, 230f / 255f);
+                break;
+            case CardType.MONEY:
+                newColor = new Color(255f / 255f, 255f / 255f, 113f / 255f);
+                break;
+            case CardType.SPORTS:
+                newColor = new Color(170f / 255f, 255f / 255f, 75f / 255f);
+                break;
+            case CardType.STUDY:
+                newColor = new Color(103f / 255f, 199f / 255f, 254f / 255f);
+                break;
+        }
+
+        cardBack.color = newColor;
+    }
+
     private void ChangeSortingLayer(bool isHovered)
     {
         if (isHovered)
@@ -128,54 +156,5 @@ public class CardView : BaseView<CardModel>
             image.sortingOrder = 2;
             canvas.sortingOrder = 3;
         }
-    }
-
-    /*
-    public void StartSelection()
-    {
-        isSelected = true;
-    }
-
-    public void EndSelection()
-    {
-        isSelected = false;
-    }
-
-    public void OnTriggerEnter2D(Collider2D col)
-    {
-        CalendarWeekdaySlot slot = col.GetComponent<CalendarWeekdaySlot>();
-        if (slot)
-        {
-            overlappedSlot = slot;
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D col)
-    {
-        CalendarWeekdaySlot slot = col.GetComponent<CalendarWeekdaySlot>();
-        if (slot)
-        {
-            overlappedSlot = null;
-        }
-    }
-    */
-
-    public void SetCardInSlot(CalendarWeekdaySlot slot)
-    {
-        inHand = false;
-        isHovered = true; // Done to make sure hover state is reset correctly after placement
-        slot.AcceptCard(model);
-        transform.SetParent(slot.transform);
-        Vector3 newPosition = slot.transform.position + placedOffset;
-        transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z); // Preserve z value
-        transform.localScale = hoveredPlacedSize;
-    }
-
-    public void ReturnToHand()
-    {
-        inHand = true;
-        transform.SetParent(InputManager.instance.handTransform);
-        transform.position = originalHandPosition;
-        transform.localScale = normalHandSize;
     }
 }

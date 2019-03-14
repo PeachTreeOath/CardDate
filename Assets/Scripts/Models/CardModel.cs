@@ -12,13 +12,15 @@ public class CardModel : BaseModel
     public CardType type;
     public int energyCost;
     public int numCardsToDraw;
+    public RuntimeAnimatorController animation;
 
     public CardModel(CardPrototype prototype)
     {
         this.prototype = prototype;
-        this.cardName = prototype.cardName;
-        this.type = prototype.type;
-        this.energyCost = prototype.energyCost;
-        this.numCardsToDraw = prototype.numCardsToDraw;
+        cardName = prototype.cardName;
+        type = prototype.type;
+        energyCost = prototype.energyCost;
+        numCardsToDraw = prototype.numCardsToDraw;
+        animation = prototype.animation;
     }
 }

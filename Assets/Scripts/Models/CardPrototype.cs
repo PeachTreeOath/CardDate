@@ -8,8 +8,7 @@ public class CardPrototype : ScriptableObject
     public CardType type;
     public int energyCost;
     public int numCardsToDraw;
-
-    public Sprite sprite; // TODO: Change to gifs
+    public RuntimeAnimatorController animation;
 
     public CardModel Instantiate()
     {

@@ -21,6 +21,11 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
         model.AddCard(cardModel, year, month, day);
     }
 
+    public void RemoveCard(int year, int month, int day)
+    {
+        model.RemoveCard(year, month, day);
+    }
+
     public void CalculateWeekResults()
     {
 

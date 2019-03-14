@@ -6,6 +6,7 @@ public class ResourceLoader : Singleton<ResourceLoader>
 {
     [HideInInspector] public GameObject scrollBGPrefab;
     [HideInInspector] public GameObject calendarDaySlotPrefab;
+    [HideInInspector] public GameObject cardPrefab;
 
     public RuntimeAnimatorController moneyController;
     public RuntimeAnimatorController charmController;
@@ -23,5 +24,6 @@ public class ResourceLoader : Singleton<ResourceLoader>
     {
         scrollBGPrefab = Resources.Load<GameObject>("Prefabs/ScrollBG");
         calendarDaySlotPrefab = Resources.Load<GameObject>("Prefabs/CalendarDaySlot");
+        cardPrefab = Resources.Load<GameObject>("Prefabs/ActivityCard");
     }
 }
