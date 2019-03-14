@@ -9,6 +9,7 @@ public class CardModel : BaseModel
 {
     public CardPrototype prototype;
     public string cardName;
+    public string cardDescription;
     public CardType type;
     public int energyCost;
     public int numCardsToDraw;
@@ -18,6 +19,7 @@ public class CardModel : BaseModel
     {
         this.prototype = prototype;
         cardName = prototype.cardName;
+        cardDescription = prototype.cardDescription;
         type = prototype.type;
         energyCost = prototype.energyCost;
         numCardsToDraw = prototype.numCardsToDraw;

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PartTimeJob
   m_EditorClassIdentifier: 
   cardName: Part-Time Job
+  cardDescription: Add 1 Money
   type: 1
   energyCost: 1
   numCardsToDraw: 0

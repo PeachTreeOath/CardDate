@@ -104,7 +104,6 @@ public class InputManager : Singleton<InputManager>
                 if (currentSelectedCard.inHand)
                 {
                     // Clicked on card in hand, start selection
-                    //currentSelectedCard.StartSelection();
                     lineRenderer.enabled = true;
                     lineRenderer.SetPosition(0, currentSelectedCard.transform.position);
                 }
@@ -112,13 +111,13 @@ public class InputManager : Singleton<InputManager>
                 {
                     // Clicked on placed card, return to hand
                     currentSelectedCard.ReturnToHand();
-                    lineRenderer.enabled = false;
+                    ResetSelection();
                 }
             }
             // Case when player clicks on empty slot
             else if (currentHoveredSlot)
             {
-                // Make sure player has card selected, otherwise do nothing
+                // Make sure player has card selected before setting in slot, otherwise do nothing
                 if (currentSelectedCard)
                 {
                     currentSelectedCard.SetCardInSlot(currentHoveredSlot);

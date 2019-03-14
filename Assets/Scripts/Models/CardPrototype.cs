@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardPrototype : ScriptableObject
 {
     public string cardName;
+    public string cardDescription;
     public CardType type;
     public int energyCost;
     public int numCardsToDraw;

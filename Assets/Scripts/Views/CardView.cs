@@ -11,6 +11,7 @@ public class CardView : BaseView<CardModel>
     [SerializeField] private SpriteRenderer cardFace;
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI nameField;
+    [SerializeField] private TextMeshProUGUI descriptionField;
     [SerializeField] private SpriteRenderer image;
     [SerializeField] private Animator animator;
 
@@ -42,9 +43,11 @@ public class CardView : BaseView<CardModel>
 
         ChangeColorToType(model.type);
         nameField.text = model.cardName;
+        descriptionField.text = model.cardDescription;
         animator.runtimeAnimatorController = model.animation;
     }
 
+    // Sets the proper card position in hand
     public void SetHomePosition()
     {
         originalHandPosition = transform.position;
@@ -111,7 +114,7 @@ public class CardView : BaseView<CardModel>
         transform.SetParent(InputManager.instance.handTransform);
         transform.position = originalHandPosition;
         transform.localScale = normalHandSize;
-        // TODO: Place back into hand and rearrange
+        // TODO: Place back into hand controller and rearrange
     }
 
     private void ChangeColorToType(CardType cardType)
