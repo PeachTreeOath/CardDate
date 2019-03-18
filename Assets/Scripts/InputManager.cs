@@ -38,12 +38,6 @@ public class InputManager : Singleton<InputManager>
         {
             ResetSelection();
         }
-
-        //TODO temp
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EndWeek();
-        }
     }
 
     private void CastRay()

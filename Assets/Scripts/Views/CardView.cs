@@ -41,9 +41,9 @@ public class CardView : BaseView<CardModel>
     {
         model = cardModel;
 
-        ChangeColorToType(model.type);
-        nameField.text = model.cardName;
-        descriptionField.text = model.cardDescription;
+        ChangeColorToType(model.statGainType);
+        nameField.text = model.name;
+        descriptionField.text = model.description;
         animator.runtimeAnimatorController = model.animation;
     }
 
@@ -97,7 +97,7 @@ public class CardView : BaseView<CardModel>
 
         inHand = false;
         isHovered = true; // Done to make sure hover state is reset correctly after placement
-        slot.AcceptCard(model);
+        slot.AcceptCard(GetComponent<CardController>()); // TODO Fix this paradigm breaker
         currentSlot = slot;
         transform.SetParent(slot.transform);
         Vector3 newPosition = slot.transform.position + placedOffset;
@@ -117,25 +117,25 @@ public class CardView : BaseView<CardModel>
         // TODO: Place back into hand controller and rearrange
     }
 
-    private void ChangeColorToType(CardType cardType)
+    private void ChangeColorToType(PlayerStatType cardType)
     {
         Color newColor = Color.white;
 
         switch (cardType)
         {
-            case CardType.CHARM:
+            case PlayerStatType.CHARM:
                 newColor = new Color(255f / 255f, 130f / 255f, 189f / 255f);
                 break;
-            case CardType.FASHION:
+            case PlayerStatType.FASHION:
                 newColor = new Color(190f / 255f, 70f / 255f, 230f / 255f);
                 break;
-            case CardType.MONEY:
+            case PlayerStatType.MONEY:
                 newColor = new Color(255f / 255f, 255f / 255f, 113f / 255f);
                 break;
-            case CardType.SPORTS:
+            case PlayerStatType.SPORTS:
                 newColor = new Color(170f / 255f, 255f / 255f, 75f / 255f);
                 break;
-            case CardType.STUDY:
+            case PlayerStatType.STUDY:
                 newColor = new Color(103f / 255f, 199f / 255f, 254f / 255f);
                 break;
         }

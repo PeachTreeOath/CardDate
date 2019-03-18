@@ -12,10 +12,13 @@ public abstract class ACalendarSlot : MonoBehaviour
     public int week;
     public int day; // Date of slot 1-28
 
-    public bool isOccupied;
+    [SerializeField] private TextMeshPro dateText;
+    [SerializeField] private SpriteRenderer xMarkSprite;
+    [SerializeField] private SpriteRenderer highlightBackground;
+    [SerializeField] private float fadeSpeed;
 
-    [SerializeField] protected TextMeshPro dateText;
-
+    private bool isHighlighting;
+    private Color initialHighlightColor;
     private SpriteRenderer[] sprites;
     private TextMeshPro[] texts;
 
@@ -23,6 +26,7 @@ public abstract class ACalendarSlot : MonoBehaviour
     {
         sprites = GetComponentsInChildren<SpriteRenderer>();
         texts = GetComponentsInChildren<TextMeshPro>();
+        initialHighlightColor = highlightBackground.color;
     }
 
     public void InitDate(int year, int month, int week, int day)
@@ -44,9 +48,48 @@ public abstract class ACalendarSlot : MonoBehaviour
             text.alpha = alpha;
     }
 
+    public void MarkDate()
+    {
+        xMarkSprite.enabled = true;
+    }
+
+    public void HighlightSlot(bool toggleOn)
+    {
+        isHighlighting = toggleOn;
+        highlightBackground.enabled = toggleOn;
+
+        if (toggleOn)
+        {
+            StartCoroutine("HighlightSlotCR");
+        }
+    }
 
     private void SetDateText()
     {
         dateText.text = day.ToString();
+    }
+
+    private IEnumerator HighlightSlotCR()
+    {
+        float alpha = 0;
+        bool isFadingIn = true;
+
+        while (isHighlighting)
+        {
+            if (isFadingIn)
+            {
+                alpha += Time.deltaTime * fadeSpeed;
+                if (alpha > 1) isFadingIn = !isFadingIn;
+            }
+            else
+            {
+                alpha -= Time.deltaTime * fadeSpeed;
+                if (alpha < 0) isFadingIn = !isFadingIn;
+            }
+
+            Color newColor = new Color(initialHighlightColor.r, initialHighlightColor.g, initialHighlightColor.b, alpha);
+            highlightBackground.color = newColor;
+            yield return null;
+        }
     }
 }

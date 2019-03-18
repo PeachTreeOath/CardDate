@@ -5,13 +5,18 @@ using UnityEngine;
 public class DeckController : SingletonBaseController<DeckController, DeckModel, DeckView>
 {
 
+    public void InitDeck()
+    {
+        GetComponent<InitialDeckConfig>().Init();
+    }
+
     public void PutOnTop(CardModel card)
     {
         model.library.Add(card);
         view.UpdateDeckPileCount();
     }
 
-    public CardModel Draw()
+    public CardModel DrawCard()
     {
         CardModel card = null;
 
@@ -64,5 +69,11 @@ public class DeckController : SingletonBaseController<DeckController, DeckModel,
             model.library[i] = model.library[randomIndex];
             model.library[randomIndex] = temp;
         }
+    }
+
+    public void AddToDiscardPile(CardModel card)
+    {
+        model.discard.Add(card);
+        view.UpdateDiscardPileCount();
     }
 }

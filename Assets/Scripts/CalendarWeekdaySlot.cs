@@ -7,15 +7,18 @@ using UnityEngine.EventSystems;
 
 public class CalendarWeekdaySlot : ACalendarSlot
 {
-    public void AcceptCard(CardModel card)
+    public bool isOccupied = true; // Starts off true so that you can't place a card into any slot
+
+    public void AcceptCard(CardController card)
     {
         CalendarController.instance.PlaceCard(card, year, month, day);
         isOccupied = true;
+        HighlightSlot(true);
     }
 
     public void RemoveCard()
     {
         CalendarController.instance.RemoveCard(year, month, day);
         isOccupied = false;
-    }
+    }  
 }

@@ -8,21 +8,34 @@ using UnityEngine.EventSystems;
 public class CardModel : BaseModel
 {
     public CardPrototype prototype;
-    public string cardName;
-    public string cardDescription;
-    public CardType type;
-    public int energyCost;
-    public int numCardsToDraw;
+
+    public string id;
+    public string name;
+    public string description;
     public RuntimeAnimatorController animation;
+    public RarityType rarity;
+    public int cost;
+    public CardEffectType effect;
+
+    // Stat Gain Parameters
+    public PlayerStatType statGainType;
+    public int statGainAmount;
+
+    // Card Draw Parameters
+    public int numCardsToDraw;
 
     public CardModel(CardPrototype prototype)
     {
         this.prototype = prototype;
-        cardName = prototype.cardName;
-        cardDescription = prototype.cardDescription;
-        type = prototype.type;
-        energyCost = prototype.energyCost;
-        numCardsToDraw = prototype.numCardsToDraw;
+        id = prototype.id;
+        name = prototype.name;
+        description = prototype.description;
         animation = prototype.animation;
+        rarity = prototype.rarity;
+        cost = prototype.cost;
+        effect = prototype.effect;
+        statGainType = prototype.statGainType;
+        statGainAmount = prototype.statGainAmount;
+        numCardsToDraw = prototype.numCardsToDraw;
     }
 }

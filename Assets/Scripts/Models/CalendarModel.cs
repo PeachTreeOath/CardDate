@@ -14,7 +14,7 @@ public class CalendarModel : BaseModel
     public int currentMonth = 1;
     public int currentWeek = 1;
 
-    private Dictionary<int, CardModel> activityMap = new Dictionary<int, CardModel>(); // Map of total day to activities
+    public Dictionary<int, CardController> activityMap = new Dictionary<int, CardController>(); // Map of total day to activities
 
     public void IncrementWeek()
     {
@@ -35,9 +35,9 @@ public class CalendarModel : BaseModel
         // TODO: Check for gameover at year 4 end
     }
 
-    public void AddCard(CardModel cardModel, int year, int month, int day)
+    public void AddCard(CardController cardController, int year, int month, int day)
     {
-        activityMap.Add(CalculateTotalDay(year, month, day), cardModel);
+        activityMap.Add(CalculateTotalDay(year, month, day), cardController);
     }
 
     public void RemoveCard(int year, int month, int day)
@@ -45,11 +45,23 @@ public class CalendarModel : BaseModel
         activityMap.Remove(CalculateTotalDay(year, month, day));
     }
 
-    private int CalculateTotalDay(int year, int month, int day)
+    // Calculates actual day total of a certain week
+    public int CalculateTotalDay(int year, int month, int day)
     {
         int totalDay = (year - 1) * 112;
         totalDay += (month - 1) * 28;
         totalDay += day;
+
+        return totalDay;
+    }
+
+    // Calculates actual day total of the current week's sunday
+    public int CalculateTotalDayForCurrentWeek()
+    {
+        int totalDay = (currentYear - 1) * 112;
+        totalDay += (currentMonth - 1) * 28;
+        totalDay += (currentWeek - 1) * 7;
+        totalDay += 1;
 
         return totalDay;
     }

@@ -12,13 +12,14 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
 
     public void GotoNextWeek()
     {
+        CalculateWeekResults();
         model.IncrementWeek();
         view.GotoNextWeek();
     }
 
-    public void PlaceCard(CardModel cardModel, int year, int month, int day)
+    public void PlaceCard(CardController cardController, int year, int month, int day)
     {
-        model.AddCard(cardModel, year, month, day);
+        model.AddCard(cardController, year, month, day);
     }
 
     public void RemoveCard(int year, int month, int day)
@@ -28,6 +29,17 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
 
     public void CalculateWeekResults()
     {
+        int currentSunday = model.CalculateTotalDayForCurrentWeek();
 
+        // Go through weekdays and perform all their actions
+        for (int i = currentSunday + 1; i < currentSunday + 6; i++)
+        {
+            CardController card;
+            model.activityMap.TryGetValue(i, out card);
+            if (card)
+            {
+                card.PerformAction();
+            }
+        }
     }
 }

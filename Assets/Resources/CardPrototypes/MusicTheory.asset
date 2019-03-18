@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f168e378eb5de67429f827acb9cbdc3c, type: 3}
-  m_Name: PartTimeJob
+  m_Name: MusicTheory
   m_EditorClassIdentifier: 
-  id: 0
-  name: Part-Time Job
-  description: Gain 1 Money
-  animation: {fileID: 9100000, guid: 662002af8673a54459e4cb12911f88eb, type: 2}
+  id: 4
+  name: Music Theory
+  description: Gain 1 Study
+  animation: {fileID: 9100000, guid: 156ceabd8164c2948a5caaa06aa07fab, type: 2}
   rarity: 0
   cost: 1
   effect: 1
-  statGainType: 1
+  statGainType: 5
   statGainAmount: 1
   numCardsToDraw: 0

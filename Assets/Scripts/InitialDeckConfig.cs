@@ -7,7 +7,7 @@ public class InitialDeckConfig : MonoBehaviour
 
     public List<CardPrototype> startingCards;
 
-    void Start()
+    public void Init()
     {
         if (startingCards == null)
         {

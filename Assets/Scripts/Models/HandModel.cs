@@ -6,6 +6,5 @@ using UnityEngine;
 [Serializable]
 public class HandModel : BaseModel
 {
-    public List<CardModel> cards = new List<CardModel>();
-
+    // Intentionally left blank, hand data is controlled in the controller
 }
