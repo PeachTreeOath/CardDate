@@ -51,6 +51,31 @@ public class CalendarView : BaseView<CalendarModel>
         }
     }
 
+    public void StopAcceptingWeekdayCards()
+    {
+        // Get current week
+        GameObject go = weekViewSlots.Peek();
+
+        CalendarWeekdaySlot[] daySlots = go.GetComponentsInChildren<CalendarWeekdaySlot>();
+        foreach (CalendarWeekdaySlot daySlot in daySlots)
+        {
+            daySlot.StopAcceptingCards();
+        }
+    }
+
+    public void StartAcceptingWeekdayCards()
+    {
+        // Get current week
+        GameObject go = weekViewSlots.Peek();
+
+        CalendarWeekdaySlot[] daySlots = go.GetComponentsInChildren<CalendarWeekdaySlot>();
+        foreach (CalendarWeekdaySlot daySlot in daySlots)
+        {
+            daySlot.StartAcceptingCards();
+        }
+    }
+
+    // Move calendar upwards to transition to next week
     private IEnumerator MoveViewSlotsCR()
     {
         float lerpValue = 0;
@@ -63,18 +88,18 @@ public class CalendarView : BaseView<CalendarModel>
             foreach (GameObject go in weekViewSlots)
             {
                 go.transform.position = Vector3.Lerp(weekViewSlotPositions[i + 1], weekViewSlotPositions[i], lerpValue);
-                if (i == 0)
+                if (i == 0) // Fade out top week
                 {
-                    CalendarWeekdaySlot[] daySlots = go.GetComponentsInChildren<CalendarWeekdaySlot>();
-                    foreach (CalendarWeekdaySlot daySlot in daySlots)
+                    ACalendarSlot[] daySlots = go.GetComponentsInChildren<ACalendarSlot>();
+                    foreach (ACalendarSlot daySlot in daySlots)
                     {
                         daySlot.SetAlpha(1 - lerpValue);
                     }
                 }
-                else if (i == 3)
+                else if (i == 3) // Fade out bottom week
                 {
-                    CalendarWeekdaySlot[] daySlots = go.GetComponentsInChildren<CalendarWeekdaySlot>();
-                    foreach (CalendarWeekdaySlot daySlot in daySlots)
+                    ACalendarSlot[] daySlots = go.GetComponentsInChildren<ACalendarSlot>();
+                    foreach (ACalendarSlot daySlot in daySlots)
                     {
                         daySlot.SetAlpha(lerpValue);
                     }
@@ -88,6 +113,8 @@ public class CalendarView : BaseView<CalendarModel>
 
         GameObject oldWeek = weekViewSlots.Dequeue();
         Destroy(oldWeek);
+
+        StartAcceptingWeekdayCards();
     }
 
     private GameObject CreateCalendarWeek(int week)
@@ -98,7 +125,14 @@ public class CalendarView : BaseView<CalendarModel>
 
         for (int i = 0; i < 7; i++)
         {
-            GameObject dayGo = CreateCalendarDay(model.currentYear, model.currentMonth, model.currentWeek, date);
+            GameObject dayGo;
+            if (i == 0) // Sunday
+                dayGo = CreateCalendarSunday(model.currentYear, model.currentMonth, model.currentWeek, date);
+            else if (i == 6) // Saturday
+                dayGo = CreateCalendarSaturday(model.currentYear, model.currentMonth, model.currentWeek, date);
+            else // Weekday
+                dayGo = CreateCalendarWeekday(model.currentYear, model.currentMonth, model.currentWeek, date);
+
             dayGo.name = model.currentMonth + "-" + date;
             dayGo.transform.SetParent(weekGo.transform);
             float slotXPos = dayViewSlotXStartPos + (i * dayViewSlotXDistance);
@@ -115,9 +149,27 @@ public class CalendarView : BaseView<CalendarModel>
         return (weekOfMonth) * 7 + 1;
     }
 
-    private GameObject CreateCalendarDay(int year, int month, int week, int day)
+    private GameObject CreateCalendarWeekday(int year, int month, int week, int day)
     {
-        GameObject go = Instantiate(ResourceLoader.instance.calendarDaySlotPrefab);
+        GameObject go = Instantiate(ResourceLoader.instance.calendarWeekdaySlotPrefab);
+        ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
+        slot.InitDate(year, month, week, day);
+
+        return go;
+    }
+
+    private GameObject CreateCalendarSunday(int year, int month, int week, int day)
+    {
+        GameObject go = Instantiate(ResourceLoader.instance.calendarSundaySlotPrefab);
+        ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
+        slot.InitDate(year, month, week, day);
+
+        return go;
+    }
+
+    private GameObject CreateCalendarSaturday(int year, int month, int week, int day)
+    {
+        GameObject go = Instantiate(ResourceLoader.instance.calendarSaturdaySlotPrefab);
         ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
         slot.InitDate(year, month, week, day);
 

@@ -8,13 +8,15 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
     void Start()
     {
         view.CreateInitialCalendar();
+        view.StartAcceptingWeekdayCards();
     }
 
     public void GotoNextWeek()
     {
         CalculateWeekResults();
         model.IncrementWeek();
-        view.GotoNextWeek();
+        view.StopAcceptingWeekdayCards();
+        view.GotoNextWeek(); // View will start accepting cards at the end of coroutine
     }
 
     public void PlaceCard(CardController cardController, int year, int month, int day)

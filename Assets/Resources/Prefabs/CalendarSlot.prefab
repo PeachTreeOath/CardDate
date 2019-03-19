@@ -376,9 +376,8 @@ GameObject:
   - component: {fileID: 6761489146533128037}
   - component: {fileID: 3257165166366604151}
   - component: {fileID: 6647222524820735559}
-  - component: {fileID: 5033105300145954901}
   m_Layer: 0
-  m_Name: CalendarDaySlot
+  m_Name: CalendarSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,27 +448,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.04, y: 3.16}
   m_EdgeRadius: 0
---- !u!114 &5033105300145954901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6728203959323806835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98851fbe8f5d7844b5026420c5b37aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  year: 0
-  month: 0
-  week: 0
-  day: 0
-  isOccupied: 0
-  dateText: {fileID: 6560347143474326305}
-  xMarkSprite: {fileID: 7675463252772641109}
-  highlightBackground: {fileID: 3013606063152699605}
-  fadeSpeed: 1
 --- !u!1 &7080548082501608913
 GameObject:
   m_ObjectHideFlags: 0

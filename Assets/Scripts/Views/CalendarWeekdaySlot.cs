@@ -20,5 +20,18 @@ public class CalendarWeekdaySlot : ACalendarSlot
     {
         CalendarController.instance.RemoveCard(year, month, day);
         isOccupied = false;
-    }  
+    }
+
+    public void StartAcceptingCards()
+    {
+        isOccupied = false;
+        HighlightSlot(true);
+    }
+
+    public void StopAcceptingCards()
+    {
+        isOccupied = true;
+        HighlightSlot(false);
+        MarkDate();
+    }
 }
