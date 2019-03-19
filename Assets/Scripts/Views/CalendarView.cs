@@ -151,25 +151,23 @@ public class CalendarView : BaseView<CalendarModel>
 
     private GameObject CreateCalendarWeekday(int year, int month, int week, int day)
     {
-        GameObject go = Instantiate(ResourceLoader.instance.calendarWeekdaySlotPrefab);
-        ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
-        slot.InitDate(year, month, week, day);
-
-        return go;
+        return ResourceLoader.instance.calendarWeekdaySlotPrefab;
     }
 
     private GameObject CreateCalendarSunday(int year, int month, int week, int day)
     {
-        GameObject go = Instantiate(ResourceLoader.instance.calendarSundaySlotPrefab);
-        ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
-        slot.InitDate(year, month, week, day);
-
-        return go;
+        return ResourceLoader.instance.calendarSundaySlotPrefab;
     }
 
     private GameObject CreateCalendarSaturday(int year, int month, int week, int day)
     {
-        GameObject go = Instantiate(ResourceLoader.instance.calendarSaturdaySlotPrefab);
+        return ResourceLoader.instance.calendarSaturdaySlotPrefab;
+    }
+
+    private GameObject CreateCalendarDay(GameObject prefab, int year, int month, int week, int day)
+    {
+        GameObject go = Instantiate(prefab);
+        go.transform.SetParent(transform);
         ACalendarSlot slot = go.GetComponent<ACalendarSlot>();
         slot.InitDate(year, month, week, day);
 

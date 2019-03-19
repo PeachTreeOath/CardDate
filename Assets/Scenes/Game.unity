@@ -144,7 +144,7 @@ Transform:
   - {fileID: 976588227}
   - {fileID: 853041338}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7456406
 MonoBehaviour:
@@ -210,7 +210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 604.5, y: -260.4}
+  m_AnchoredPosition: {x: 604.5, y: -262.1}
   m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13630690
@@ -931,7 +931,7 @@ Transform:
   m_Children:
   - {fileID: 1062856385}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &310009508
 MonoBehaviour:
@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: 587201137}
   - component: {fileID: 587201136}
   m_Layer: 0
-  m_Name: Popn1
+  m_Name: CheerleaderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1578,7 +1578,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &630272147
 GameObject:
@@ -1610,7 +1610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &630272149
 MonoBehaviour:
@@ -2526,7 +2526,7 @@ GameObject:
   - component: {fileID: 1010973378}
   - component: {fileID: 1010973377}
   m_Layer: 0
-  m_Name: Popn2
+  m_Name: CheerleaderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2611,7 +2611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1058426732
 GameObject:
@@ -2974,7 +2974,7 @@ Transform:
   - {fileID: 2141211373}
   - {fileID: 1497906317}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1146629534
 MonoBehaviour:
@@ -3990,7 +3990,7 @@ RectTransform:
   m_Children:
   - {fileID: 13630689}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5406,7 +5406,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollBGPrefab: {fileID: 0}
-  calendarDaySlotPrefab: {fileID: 0}
+  calendarWeekdaySlotPrefab: {fileID: 0}
+  calendarSundaySlotPrefab: {fileID: 0}
+  calendarSaturdaySlotPrefab: {fileID: 0}
   cardPrefab: {fileID: 0}
 --- !u!120 &1944940996
 LineRenderer:
