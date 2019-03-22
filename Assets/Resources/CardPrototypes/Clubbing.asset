@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f168e378eb5de67429f827acb9cbdc3c, type: 3}
   m_Name: Clubbing
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   name: Clubbing
   description: Gain 1 Charm
-  animation: {fileID: 9100000, guid: fbdf1a716e13d6a439770917c4a2b1d3, type: 2}
+  animation: {fileID: 9100000, guid: 0ab23a0836b2a52478c737596da085e0, type: 2}
   rarity: 0
   cost: 1
   effect: 1

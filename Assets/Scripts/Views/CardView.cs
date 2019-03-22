@@ -148,15 +148,15 @@ public class CardView : BaseView<CardModel>
         if (isHovered)
         {
             cardBack.sortingOrder = 10;
-            cardFace.sortingOrder = 11;
-            image.sortingOrder = 12;
+            cardFace.sortingOrder = 12;
+            image.sortingOrder = 11;
             canvas.sortingOrder = 13;
         }
         else
         {
             cardBack.sortingOrder = 0;
-            cardFace.sortingOrder = 1;
-            image.sortingOrder = 2;
+            cardFace.sortingOrder = 2;
+            image.sortingOrder = 1;
             canvas.sortingOrder = 3;
         }
     }

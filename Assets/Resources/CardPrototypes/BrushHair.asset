@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f168e378eb5de67429f827acb9cbdc3c, type: 3}
   m_Name: BrushHair
   m_EditorClassIdentifier: 
-  id: 2
+  id: 0
   name: Brush Hair
   description: Gain 1 Fashion
-  animation: {fileID: 9100000, guid: d6c691af1bd160b45a565a4ed6e840a7, type: 2}
+  animation: {fileID: 9100000, guid: cdd34700747d6084f877b1889bfcc0e6, type: 2}
   rarity: 0
   cost: 1
   effect: 1

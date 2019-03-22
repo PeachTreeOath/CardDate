@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 4
   name: Music Theory
   description: Gain 1 Study
-  animation: {fileID: 9100000, guid: 156ceabd8164c2948a5caaa06aa07fab, type: 2}
+  animation: {fileID: 9100000, guid: fd185c3f4bdc7d24aa858e1f5ff5ed64, type: 2}
   rarity: 0
   cost: 1
   effect: 1

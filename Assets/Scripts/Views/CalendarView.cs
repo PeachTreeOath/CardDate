@@ -151,17 +151,17 @@ public class CalendarView : BaseView<CalendarModel>
 
     private GameObject CreateCalendarWeekday(int year, int month, int week, int day)
     {
-        return ResourceLoader.instance.calendarWeekdaySlotPrefab;
+        return CreateCalendarDay(ResourceLoader.instance.calendarWeekdaySlotPrefab, year, month, week, day);
     }
 
     private GameObject CreateCalendarSunday(int year, int month, int week, int day)
     {
-        return ResourceLoader.instance.calendarSundaySlotPrefab;
+        return CreateCalendarDay(ResourceLoader.instance.calendarSundaySlotPrefab, year, month, week, day);
     }
 
     private GameObject CreateCalendarSaturday(int year, int month, int week, int day)
     {
-        return ResourceLoader.instance.calendarSaturdaySlotPrefab;
+        return CreateCalendarDay(ResourceLoader.instance.calendarSaturdaySlotPrefab, year, month, week, day);
     }
 
     private GameObject CreateCalendarDay(GameObject prefab, int year, int month, int week, int day)

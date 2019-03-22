@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f168e378eb5de67429f827acb9cbdc3c, type: 3}
   m_Name: StretchClass
   m_EditorClassIdentifier: 
-  id: 3
+  id: 5
   name: Stretch Class
   description: Gain 1 Sports
-  animation: {fileID: 9100000, guid: e7bf1d6a02d2053498cd0586e9cc0114, type: 2}
+  animation: {fileID: 9100000, guid: 7169519a9fa0680459581753fe0576e2, type: 2}
   rarity: 0
   cost: 1
   effect: 1

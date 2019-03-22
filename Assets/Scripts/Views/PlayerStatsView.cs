@@ -13,7 +13,7 @@ public class PlayerStatsView : BaseView<PlayerStatsModel>
     [SerializeField] private TextMeshProUGUI fashionText;
     [SerializeField] private TextMeshProUGUI sportsText;
     [SerializeField] private TextMeshProUGUI studyText;
-    [SerializeField] private TooltipPanel statsTooltipPanel;
+    [SerializeField] private CanvasGroupToggler statsTooltipPanel;
     [SerializeField] private TextMeshProUGUI statsTooltipText;
 
     private const string tooltipString = "test";

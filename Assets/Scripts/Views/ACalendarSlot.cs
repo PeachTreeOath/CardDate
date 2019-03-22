@@ -71,7 +71,8 @@ public abstract class ACalendarSlot : MonoBehaviour
 
     private IEnumerator HighlightSlotCR()
     {
-        float alpha = 0;
+        float minimumAlpha = 0.2f;
+        float alpha = minimumAlpha;
         bool isFadingIn = true;
 
         while (isHighlighting)
@@ -84,7 +85,7 @@ public abstract class ACalendarSlot : MonoBehaviour
             else
             {
                 alpha -= Time.deltaTime * fadeSpeed;
-                if (alpha < 0) isFadingIn = !isFadingIn;
+                if (alpha < minimumAlpha) isFadingIn = !isFadingIn;
             }
 
             Color newColor = new Color(initialHighlightColor.r, initialHighlightColor.g, initialHighlightColor.b, alpha);

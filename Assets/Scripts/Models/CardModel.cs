@@ -29,7 +29,7 @@ public class CardModel : BaseModel
         this.prototype = prototype;
         id = prototype.id;
         name = prototype.name;
-        description = prototype.description;
+        description = prototype.description.Replace("\\n", "\n"); // Allow newlines
         animation = prototype.animation;
         rarity = prototype.rarity;
         cost = prototype.cost;
