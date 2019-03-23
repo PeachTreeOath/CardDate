@@ -7,5 +7,5 @@ using UnityEngine.EventSystems;
 
 public class CalendarSaturdaySlot : ACalendarSlot
 {
-    
+    public bool isActiveSlot;
 }

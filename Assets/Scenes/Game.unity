@@ -254,7 +254,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1944940997}
-        m_MethodName: EndWeek
+        m_MethodName: EndPhase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6658,6 +6658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f72151c1c23cfa49b57dda6b32ceebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  journalCanvas: {fileID: 0}
   handTransform: {fileID: 0}
 --- !u!114 &1944940995
 MonoBehaviour:
@@ -6783,6 +6784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46dc79ad42256141b8e3eed307dcc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPhase: 0
 --- !u!1 &1959623732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7352,9 +7354,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017822761}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &2017822764
 MonoBehaviour:

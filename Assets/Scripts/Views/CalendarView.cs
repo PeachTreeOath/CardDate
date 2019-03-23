@@ -75,6 +75,38 @@ public class CalendarView : BaseView<CalendarModel>
         }
     }
 
+    public void StopAcceptingSaturdayInput()
+    {
+        GameObject go = weekViewSlots.Peek();
+        CalendarSaturdaySlot slot = go.GetComponentInChildren<CalendarSaturdaySlot>();
+        slot.HighlightSlot(false);
+        slot.isActiveSlot = false;
+    }
+
+    public void StartAcceptingSaturdayInput()
+    {
+        GameObject go = weekViewSlots.Peek();
+        CalendarSaturdaySlot slot = go.GetComponentInChildren<CalendarSaturdaySlot>();
+        slot.HighlightSlot(true);
+        slot.isActiveSlot = true;
+    }
+
+    public void StopAcceptingSundayInput()
+    {
+        GameObject go = weekViewSlots.Peek();
+        CalendarSundaySlot slot = go.GetComponentInChildren<CalendarSundaySlot>();
+        slot.HighlightSlot(false);
+        slot.isActiveSlot = false;
+    }
+
+    public void StartAcceptingSundayInput()
+    {
+        GameObject go = weekViewSlots.Peek();
+        CalendarSundaySlot slot = go.GetComponentInChildren<CalendarSundaySlot>();
+        slot.HighlightSlot(true);
+        slot.isActiveSlot = true;
+    }
+
     // Move calendar upwards to transition to next week
     private IEnumerator MoveViewSlotsCR()
     {

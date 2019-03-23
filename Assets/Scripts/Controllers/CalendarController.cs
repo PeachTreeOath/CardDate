@@ -11,11 +11,24 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
         view.StartAcceptingWeekdayCards();
     }
 
-    public void GotoNextWeek()
+    public void GotoSaturday()
     {
-        CalculateWeekResults();
+        CalculateWeekdayResults();
         model.IncrementWeek();
         view.StopAcceptingWeekdayCards();
+        view.StartAcceptingSaturdayInput();
+    }
+
+    public void GotoSunday()
+    {
+        view.StopAcceptingSaturdayInput();
+        view.StartAcceptingSundayInput();
+    }
+
+    public void GotoWeekday()
+    {
+        view.StopAcceptingSundayInput();
+        model.IncrementWeek();
         view.GotoNextWeek(); // View will start accepting cards at the end of coroutine
     }
 
@@ -29,7 +42,7 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
         model.RemoveCard(year, month, day);
     }
 
-    public void CalculateWeekResults()
+    public void CalculateWeekdayResults()
     {
         int currentSunday = model.CalculateTotalDayForCurrentWeek();
 
