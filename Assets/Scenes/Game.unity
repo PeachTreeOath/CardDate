@@ -6658,8 +6658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f72151c1c23cfa49b57dda6b32ceebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  journalCanvas: {fileID: 0}
   handTransform: {fileID: 0}
+  journalCanvas: {fileID: 2017822764}
 --- !u!114 &1944940995
 MonoBehaviour:
   m_ObjectHideFlags: 0
