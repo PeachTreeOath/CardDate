@@ -9,9 +9,11 @@ public class CardView : BaseView<CardModel>
 {
     [SerializeField] private SpriteRenderer cardBack;
     [SerializeField] private SpriteRenderer cardFace;
+    [SerializeField] private SpriteRenderer costIcon;
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI nameField;
     [SerializeField] private TextMeshProUGUI descriptionField;
+    [SerializeField] private TextMeshProUGUI costField;
     [SerializeField] private SpriteRenderer image;
     [SerializeField] private Animator animator;
 
@@ -44,6 +46,7 @@ public class CardView : BaseView<CardModel>
         ChangeColorToType(model.statGainType);
         nameField.text = model.name;
         descriptionField.text = model.description;
+        costField.text = model.cost.ToString();
         animator.runtimeAnimatorController = model.animation;
     }
 
@@ -148,16 +151,18 @@ public class CardView : BaseView<CardModel>
         if (isHovered)
         {
             cardBack.sortingOrder = 10;
-            cardFace.sortingOrder = 12;
             image.sortingOrder = 11;
-            canvas.sortingOrder = 13;
+            cardFace.sortingOrder = 12;
+            costIcon.sortingOrder = 13;
+            canvas.sortingOrder = 14;
         }
         else
         {
             cardBack.sortingOrder = 0;
-            cardFace.sortingOrder = 2;
             image.sortingOrder = 1;
-            canvas.sortingOrder = 3;
+            cardFace.sortingOrder = 2;
+            costIcon.sortingOrder = 3;
+            canvas.sortingOrder = 4;
         }
     }
 }

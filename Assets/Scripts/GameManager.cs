@@ -36,18 +36,19 @@ public class GameManager : Singleton<GameManager>
         switch (currentPhase)
         {
             case PlayPhase.WEEKDAY:
-                currentPhase = PlayPhase.SATURDAY;
-                CalendarController.instance.GotoSaturday();
+                bool gotoSaturday = CalendarController.instance.GotoSaturday();
+                if (gotoSaturday)
+                    currentPhase = PlayPhase.SATURDAY;
                 break;
             case PlayPhase.SATURDAY:
-                currentPhase = PlayPhase.SUNDAY;
                 HandController.instance.DiscardHand();
                 CalendarController.instance.GotoSunday();
+                currentPhase = PlayPhase.SUNDAY;
                 break;
             case PlayPhase.SUNDAY:
-                currentPhase = PlayPhase.WEEKDAY;
                 CalendarController.instance.GotoWeekday();
                 DrawHand();
+                currentPhase = PlayPhase.WEEKDAY;
                 break;
         }
     }

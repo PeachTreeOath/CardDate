@@ -24,6 +24,11 @@ public class PlayerStatsController : SingletonBaseController<PlayerStatsControll
         view.UpdateStatsPanel();
     }
 
+    public void RefreshView()
+    {
+        view.UpdateStatsPanel();
+    }
+
     public int GetHandSize()
     {
         return model.handSize;

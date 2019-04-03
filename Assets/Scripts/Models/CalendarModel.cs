@@ -40,9 +40,13 @@ public class CalendarModel : BaseModel
         activityMap.Add(CalculateTotalDay(year, month, day), cardController);
     }
 
-    public void RemoveCard(int year, int month, int day)
+    public CardController RemoveCard(int year, int month, int day)
     {
-        activityMap.Remove(CalculateTotalDay(year, month, day));
+        int date = CalculateTotalDay(year, month, day);
+        CardController card = activityMap[date];
+        activityMap.Remove(date);
+
+        return card;
     }
 
     // Calculates actual day total of a certain week

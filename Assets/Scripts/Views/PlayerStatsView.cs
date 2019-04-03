@@ -16,11 +16,24 @@ public class PlayerStatsView : BaseView<PlayerStatsModel>
     [SerializeField] private CanvasGroupToggler statsTooltipPanel;
     [SerializeField] private TextMeshProUGUI statsTooltipText;
 
-    private const string tooltipString = "test";
+    private const string tooltipString = "test"; // TODO: Implement tooltip system
+
+    private Color defaultColor;
+    [SerializeField] private Color invalidColor;
+
+    private void Start()
+    {
+        defaultColor = staminaText.color;
+    }
 
     public void UpdateStatsPanel()
     {
-        staminaText.text = model.statMap[PlayerStatType.STAMINA].ToString();
+        int newStamina = model.statMap[PlayerStatType.STAMINA] - CalendarController.instance.currentWeekCost;
+        staminaText.text = newStamina.ToString();
+        if (newStamina >= 0)
+            staminaText.color = defaultColor;
+        else
+            staminaText.color = invalidColor;
         moneyText.text = model.statMap[PlayerStatType.MONEY].ToString();
         charmText.text = model.statMap[PlayerStatType.CHARM].ToString();
         fashionText.text = model.statMap[PlayerStatType.FASHION].ToString();

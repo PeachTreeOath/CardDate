@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Gain 1 Money\nGain 1 Sports
   animation: {fileID: 9100000, guid: 5d54d913334904c449ecb2f459fade11, type: 2}
   rarity: 0
-  cost: 1
+  cost: 2
   effect: 1
   statGainType: 1
   statGainAmount: 1

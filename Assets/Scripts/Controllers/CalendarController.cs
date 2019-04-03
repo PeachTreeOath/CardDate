@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CalendarController : SingletonBaseController<CalendarController, CalendarModel, CalendarView>
 {
+    public int currentWeekCost;
 
     void Start()
     {
@@ -11,12 +12,18 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
         view.StartAcceptingWeekdayCards();
     }
 
-    public void GotoSaturday()
+    public bool GotoSaturday()
     {
-        CalculateWeekdayResults();
-        model.IncrementWeek();
-        view.StopAcceptingWeekdayCards();
-        view.StartAcceptingSaturdayInput();
+        if (currentWeekCost <= PlayerStatsController.instance.model.statMap[PlayerStatType.STAMINA])
+        {
+            CalculateWeekdayResults();
+            model.IncrementWeek();
+            view.StopAcceptingWeekdayCards();
+            view.StartAcceptingSaturdayInput();
+            return true;
+        }
+
+        return false;
     }
 
     public void GotoSunday()
@@ -32,14 +39,18 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
         view.GotoNextWeek(); // View will start accepting cards at the end of coroutine
     }
 
-    public void PlaceCard(CardController cardController, int year, int month, int day)
+    public void PlaceCard(CardController card, int year, int month, int day)
     {
-        model.AddCard(cardController, year, month, day);
+        model.AddCard(card, year, month, day);
+        currentWeekCost += card.model.cost;
+        PlayerStatsController.instance.RefreshView();
     }
 
     public void RemoveCard(int year, int month, int day)
     {
-        model.RemoveCard(year, month, day);
+        CardController card = model.RemoveCard(year, month, day);
+        currentWeekCost -= card.model.cost;
+        PlayerStatsController.instance.RefreshView();
     }
 
     public void CalculateWeekdayResults()
@@ -56,5 +67,10 @@ public class CalendarController : SingletonBaseController<CalendarController, Ca
                 card.PerformAction();
             }
         }
+
+        // Apply stamina change then wipe current week's card cost
+        PlayerStatsController.instance.AdjustStatBy(PlayerStatType.STAMINA, -currentWeekCost);
+        currentWeekCost = 0;
+        PlayerStatsController.instance.RefreshView();
     }
 }
